@@ -1,0 +1,15 @@
+<div *ngIf="myArray.length>0 then values else novalues"></div>
+<ng-template #novalues>
+  No values exist
+</ng-template>
+<ng-template #values>
+  List of values exists
+</ng-template>
+
+<p>Hidden Element</p>
+<div [hidden]="myArray.length == 0">test0</div>
+<div [hidden]="myArray.length > 0">test1</div>
+
+<ul *ngFor="let dat of dataListForLoop; even as isEven; trackBy :trackIt()">
+  <li class="alert" [class.alert-warning]="isEven">{{dat.name}}</li>
+</ul>

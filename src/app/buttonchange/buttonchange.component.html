@@ -1,0 +1,10 @@
+<hr/>
+<h3>Button clicker</h3>
+<h5>Written as a part of the assignment of section 4</h5>
+<button class="btn" [class.btn-primary]="isClicked" [class.btn-warning]="!isClicked" (click)="clickButtonToChangeColor()">click me</button>
+<br/><br/><br/> 
+<input type="text" [(ngModel)]="sentence" (keyup)="changeCase()" placeholder="entered sentence to title case"/>
+<p>{{sentence | titlecase}}</p>
+<p>{{sentence | customPipe}}</p>
+hello
+<hr/>

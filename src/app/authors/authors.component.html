@@ -1,0 +1,24 @@
+<hr/>
+
+<p>
+  List of Authors
+</p>
+<li *ngFor="let auth of authors">
+  {{auth}}
+
+</li>
+
+<hr/>
+<h2>Pipe function here</h2>
+
+use of upper case : {{books.title | uppercase}}<br/>
+use of lower case : {{books.title | lowercase}}<br/>
+use of number for currency : {{books.price | currency:'INR':true:'3.2-2' }}<br/>
+use of number with floating number : {{books.rating | number:'1.2-2'}}<br/>
+use of number for count : {{books.counts | number}}<br/>
+use of date : {{books.curdate | date}}
+
+<hr/>
+<h2>Custom Pipes</h2>
+{{dummytext.value | dummy}}
+<br/>

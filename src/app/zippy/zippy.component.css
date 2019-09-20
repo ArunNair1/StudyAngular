@@ -1,0 +1,20 @@
+.zippy{
+width: 250px;
+}
+.zippy-heading
+{
+    background-color: burlywood;
+    padding:2px 2px;
+    margin: 2px;
+    width:auto;
+    cursor: pointer;
+}
+
+.zippy-hidden
+{
+    display: none;
+}
+.zippy-view
+{
+    display: block;
+}

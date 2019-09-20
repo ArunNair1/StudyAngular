@@ -1,0 +1,20 @@
+<h2>Panel Component</h2>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <ng-content select=".test"></ng-content>
+  </div>
+  <div class="panel-body">
+    <ng-content select=".classforngcontent"></ng-content>
+  </div>
+</div>
+<hr/>
+<div>
+  <ng-content select=".ano"></ng-content>
+</div>
+
+<div class="alert alert-success">
+  <h4>Part of Assignment of section 5</h4>
+  <button class="btn" (click)="likeClick()" [class.btn-success]="isActive" [class.btn-warning]="!isActive">likebutton</button><span>{{count}}</span>
+</div>
+
+
