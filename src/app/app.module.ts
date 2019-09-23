@@ -1,3 +1,4 @@
+import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -15,6 +16,9 @@ import { PanelComponentComponent } from './panel-component/panel-component.compo
 import { DirectiveComponentComponent } from './directive-component/directive-component.component';
 import { ArunCustomDirectiveDirective } from './arun-custom-directive.directive';
 import { ZippyComponent } from './zippy/zippy.component';
+import { MyformComponent } from './myform/myform.component';
+import { PostsComponent } from './posts/posts.component';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -28,11 +32,14 @@ import { ZippyComponent } from './zippy/zippy.component';
     PanelComponentComponent,
     DirectiveComponentComponent,
     ArunCustomDirectiveDirective,
-    ZippyComponent
+    ZippyComponent,
+    MyformComponent,
+    PostsComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpModule
   ],
   providers: [
     coursesService,

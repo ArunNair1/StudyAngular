@@ -1,0 +1,31 @@
+<h5>My Form: </h5> This is an example for form control and avlidations in Template Driven Form 
+<form #formValues="ngForm" (ngSubmit)="formSubmit(formValues.value)">
+<div class="form-group">
+  <label for="firstName">Name</label>
+  <input class="form-control" ngModel name="firstName" #firstName="ngModel" minlength="3" required/>
+  <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
+      <div *ngIf="firstName.errors.required">Please enter name</div>
+      <div *ngIf="firstName.errors.minlength">Please enter atleast {{firstName.errors.minlength.requiredLength}} characters</div>
+  </div>
+</div>
+<div class="form-group">
+  <label for="courseType">Course Type</label>
+ <select class="form-control" name="courseType" ngModel #courseType="ngModel" required>
+   <option value="" selected>Select Course</option>
+   <option *ngFor="let c of categories" value="{{c.name}}">{{c.name}}</option>
+ </select>
+  <div class="alert alert-danger" *ngIf="courseType.touched && !courseType.valid">
+      <div *ngIf="courseType.errors.required">Please select an option</div>
+  </div>
+</div>
+<div class="form-group">
+  <label for="guarantee"> <input type="checkbox" ngModel name="guarantee" #guarant="ngModel" required/>  Guarantee</label>
+  <div class="alert alert-danger" *ngIf="guarant.touched && !guarant.valid" >
+      <div *ngIf="guarant.errors.required">Please select </div>
+  </div>
+</div>
+<div class="form-group">
+  <button type="submit" [disabled]="!formValues.valid">Submit</button>
+</div>
+{{formValues.value | json}}
+</form>
