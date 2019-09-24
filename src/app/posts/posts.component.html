@@ -1,9 +1,15 @@
 <p>
-  Module to check http get request
+  Module to check http get and post request
 </p>
 
-<ul>
-  <li *ngFor="let post of posts">{{post.title}}</li>  
+<input type="text" class="form-control" name="post" #nextPost (keyup.enter)="postMethod(nextPost)"
+placeholder="Enter post title" />
+
+<ul class="list-group"  *ngFor="let post of posts; even as isEven">
+  <li class="list-group-item" [class.list-group-item-info]="isEven">{{post.title}}   
+    <button (click)="updateMethod(post)" class="btn btn-warning">Update</button>
+    <button (click)="deleteMethod(post)" class="btn btn-danger">Delete</button>
+  </li>  
 </ul>
 
 
