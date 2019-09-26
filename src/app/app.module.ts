@@ -20,6 +20,8 @@ import { MyformComponent } from './myform/myform.component';
 import { PostsComponent } from './posts/posts.component';
 import { from } from 'rxjs';
 
+import { HttpClientModule } from "@angular/common/http";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +41,8 @@ import { from } from 'rxjs';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    HttpClientModule
   ],
   providers: [
     coursesService,

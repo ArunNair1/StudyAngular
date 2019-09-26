@@ -23,9 +23,9 @@ export class PostsComponent implements OnInit {
     this.postservice.addPost(postValues)
     .subscribe(
       Response=>{ 
-               postValues['id']= Response.json().id;
+               postValues['id']= Response.id;
                this.posts.push(postValues);
-               console.log(Response.json())
+               console.log(Response);
               },
       (error:Response)=>{ 
         if(error.status==404)
@@ -42,22 +42,41 @@ export class PostsComponent implements OnInit {
 
   updateMethod(updateData)
   {
-    //console.log(updateData);
-    updateData.title = "arun tests";
-    this.postservice.updatePost(updateData).subscribe(Response=>{console.log(Response.json())}, error=>{ alert("error"); console.log(error);});
+    updateData.title ="arun tests";
+    this.postservice.updatePost(updateData).subscribe(
+      Response=>{ console.log(Response); },
+      error=>{ alert("error"); console.log(error);}
+      );
   }
 
   deleteMethod(deleteData)
   {
-    
+    this.postservice.deletePost(deleteData).subscribe(Response=>{ 
+      console.log(Response);
+      let index = this.posts.indexOf(deleteData);
+      console.log(index);
+       if(index>=0) this.posts.splice(index,1);
+     },(error:Response)=>{ console.log(error); });
+    /*
     this.postservice.deletePost(deleteData.id).subscribe(Response=>{
       let index = this.posts.indexOf(deleteData);
       console.log(index);
-      this.posts.splice(index,1);
-    }, error=>{ alert("error"); console.log(error);});
+       if(index>=0) this.posts.splice(index,1);
+    }, error=>{ alert("error"); console.log(error);});*/
   }
   ngOnInit() {
-    this.postservice.getPosts().subscribe(Response=>{this.posts = Response.json(); console.log(this.posts);},error=>{ alert("error"); console.log(error);});
+    this.postservice.getPosts().subscribe(
+      Response=>
+      {
+        console.log(Response);
+        console.log(typeof(Response));
+        this.posts = Response; 
+        //console.log(this.posts);
+      }
+      ,error=>
+      {
+         alert("error"); console.log(error);
+      });
   }
 
 }

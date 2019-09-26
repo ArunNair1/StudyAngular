@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+//new code
+import { HttpClient } from "@angular/common/http";
+//new code
+import { Observable, of } from 'rxjs';
+import { catchError,map } from 'rxjs/operators';
+import { IPosts } from '../common/posts';
 
 @Injectable({
   providedIn: 'root'
@@ -7,22 +13,44 @@ import { Http } from '@angular/http';
 export class PostService {
 
   private url='https://jsonplaceholder.typicode.com/posts';
-  constructor(private http:Http) { }
+  constructor(private http:Http, private httpc:HttpClient) { }
 
-  getPosts()
+  getPosts():Observable<IPosts[]>
   {
-    return this.http.get(this.url);
+    //new code
+    return this.httpc.get<IPosts[]>(this.url).pipe(catchError(this.handleError("getPosts",[])));
+    //new code
+
+    //return this.http.get(this.url).pipe(catchError(this.handleError("getPosts",[])));
+    //another implementation
+    //return this.http.get(this.url).pipe(catchError( (error:any):Observable<any>=>{ console.log("arun"+error);return error; }));
   }
   addPost(postValues)
   {
-    return this.http.post(this.url,JSON.stringify(postValues))
+    return this.httpc.post(this.url,JSON.stringify(postValues)).pipe(catchError(this.handleError("addPost",[])));
   }
   updatePost(updateData)
   {
-    return this.http.put(this.url+'/'+updateData.id, JSON.stringify(updateData));
+    return this.httpc.put<IPosts[]>(this.url+'/'+updateData.id, JSON.stringify(updateData));
+    //return this.http.put(this.url+'/'+updateData.id, JSON.stringify(updateData)).pipe(catchError(this.handleError("updatePosts",[])));
   }
-  deletePost(deleteDataid)
+  deletePost(deleteData)
   {
-    return this.http.delete(this.url+'/'+deleteDataid);
+    return this.httpc.delete(this.url+'/'+deleteData.id).pipe(catchError(this.handleError("deletePost",[])));
+  }
+
+  private handleError<T>(operation = 'operation', result?: T)
+  {
+    return (error: any): Observable<T> => {
+
+      // TODO: send the error to remote logging infrastructure
+      console.error("all"+error); // log to console instead
+
+      // TODO: better job of transforming error for user consumption
+      //this.log('failed:');
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
   }
 }
