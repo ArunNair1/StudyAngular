@@ -9,7 +9,8 @@
 <p>Hidden Element</p>
 <div [hidden]="myArray.length == 0">test0</div>
 <div [hidden]="myArray.length > 0">test1</div>
-
-<ul *ngFor="let dat of dataListForLoop; even as isEven; trackBy :trackIt()">
+<!--
+  <ul *ngFor="let dat of dataListForLoop; even as isEven; trackBy :trackIt()">
   <li class="alert" [class.alert-warning]="isEven">{{dat.name}}</li>
 </ul>
+-->
