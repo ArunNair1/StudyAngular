@@ -1,4 +1,19 @@
 
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    
+    <ul class="nav navbar-nav">
+      <li routerLinkActive=" alert-info" [routerLinkActiveOptions]="{exact:
+        true}"><a routerLink=""> Home</a></li>
+      <li routerLinkActive=" alert-info"><a routerLink="course">Courses</a></li>
+      <li routerLinkActive=" alert-info"><a routerLink="authors">Authors</a></li>
+      <li routerLinkActive=" alert-info"><a [routerLink]="['posts', '1']">Posts</a></li>
+    </ul>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>
+
 <!--The content below is only a placeholder and can be replaced.-->
 <!--
 <div style="text-align:center">
@@ -43,5 +58,5 @@
 
 
 <!--http components-->
-<app-posts></app-posts>
+<!--<app-posts></app-posts>-->
 <!--http components end-->

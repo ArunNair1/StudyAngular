@@ -31,7 +31,7 @@ export class PostService {
   }
   updatePost(updateData)
   {
-    return this.httpc.put<IPosts[]>(this.url+'/'+updateData.id, JSON.stringify(updateData));
+    return this.httpc.put<IPosts[]>(this.url+'sws/33'+updateData.id, JSON.stringify(updateData)).pipe(catchError(this.handleError("updatePosts",[])));
     //return this.http.put(this.url+'/'+updateData.id, JSON.stringify(updateData)).pipe(catchError(this.handleError("updatePosts",[])));
   }
   deletePost(deleteData)
@@ -44,8 +44,11 @@ export class PostService {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
-      console.error("all"+error); // log to console instead
-
+      console.error(error); // log to console instead
+      if(error.status==404)
+      {
+          
+       };
       // TODO: better job of transforming error for user consumption
       //this.log('failed:');
 

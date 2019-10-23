@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../services/post.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -9,9 +10,11 @@ import { PostService } from '../services/post.service';
 })
 export class PostsComponent implements OnInit {
   posts: any[];
+  errormsg : string;
    
-  constructor(private postservice: PostService) { 
-   
+  constructor(private postservice: PostService, private route:ActivatedRoute) { 
+   this.errormsg="tests";
+   this.route.paramMap.subscribe(paramS=>{ console.log("testId is : "+paramS.get('testid')); });
   }
 
   postMethod(nextPost)
@@ -19,11 +22,11 @@ export class PostsComponent implements OnInit {
 
     let postValues ={ title :nextPost.value};
     nextPost.value="";
-    console.log(postValues);
+    //console.log(postValues);
     this.postservice.addPost(postValues)
     .subscribe(
       Response=>{ 
-               postValues['id']= Response.id;
+               postValues['id']= Response['id'];
                this.posts.push(postValues);
                console.log(Response);
               },
@@ -45,7 +48,7 @@ export class PostsComponent implements OnInit {
     updateData.title ="arun tests";
     this.postservice.updatePost(updateData).subscribe(
       Response=>{ console.log(Response); },
-      error=>{ alert("error"); console.log(error);}
+      error=>{ console.log(error);}
       );
   }
 

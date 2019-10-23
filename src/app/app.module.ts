@@ -19,6 +19,7 @@ import { ZippyComponent } from './zippy/zippy.component';
 import { MyformComponent } from './myform/myform.component';
 import { PostsComponent } from './posts/posts.component';
 import { from } from 'rxjs';
+import {RouterModule} from '@angular/router';
 
 import { HttpClientModule } from "@angular/common/http";
 
@@ -42,7 +43,22 @@ import { HttpClientModule } from "@angular/common/http";
     BrowserModule,
     FormsModule,
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot([
+      {
+        path:'',component:MyformComponent
+      },
+      {
+        path:'course',component:CourseComponent
+      },
+      {
+        path:'authors',component:AuthorsComponent
+      },
+      {
+        path:'posts/:testid',component:PostsComponent
+      }
+
+    ])
   ],
   providers: [
     coursesService,
